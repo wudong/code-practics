@@ -1,7 +1,7 @@
 package uk.graceliu.codepractics.sort;
 
 import java.util.Arrays;
-import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static uk.graceliu.codepractics.sort.ArrayUtil.*;
 
@@ -19,7 +19,7 @@ class QuickSortTest {
 
         shuffle(ints1);
 
-        new QuickSort().quickSort(ints1);
+        new QuickSort().sort(ints1);
        // System.out.println(Arrays.toString(ints1));
         assertArrayEquals(ints2, ints1);
     }
@@ -29,7 +29,7 @@ class QuickSortTest {
     @org.junit.jupiter.api.Test
     void quickSort2() {
          int [] ints1 = {1,3,2};
-        new QuickSort().quickSort(ints1);
+        new QuickSort().sort(ints1);
         System.out.println(Arrays.toString(ints1));
      }
 

@@ -2,9 +2,10 @@ package uk.graceliu.codepractics.sort;
 
 import java.util.*;
 
-public class QuickSort {
+public class QuickSort implements Sort {
 
-    public void quickSort(int[] array){
+    @Override
+    public void sort(int[] array){
         iterativeSort(array, 0, array.length-1);
     }
 
@@ -29,15 +30,6 @@ public class QuickSort {
                 recursiveSort(array, start, i);
                 recursiveSort(array, i+2, end);
             }
-        }
-    }
-
-    public class Pair {
-        int start;
-        int end;
-        Pair(int start, int end){
-            this.start = start;
-            this.end = end;
         }
     }
 
