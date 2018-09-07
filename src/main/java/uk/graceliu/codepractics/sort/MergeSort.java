@@ -7,7 +7,8 @@ public class MergeSort implements Sort {
     @Override
     public void sort(int[] array) {
         int[] buffer = new int[array.length];
-        recursiveMergeSort(array, 0, array.length-1, buffer);
+        //recursiveMergeSort(array, 0, array.length-1, buffer);
+        iterativeMergeSort(array, 0, array.length-1, buffer);
     }
 
     public void recursiveMergeSort(int[] array, int start, int end, int[] buffer) {
@@ -24,37 +25,39 @@ public class MergeSort implements Sort {
 
             recursiveMergeSort(array, start, middle-1, buffer);
             recursiveMergeSort(array, middle, end, buffer);
-
             merge(array, start, middle, end, buffer);
         }
     }
 
     public void iterativeMergeSort(int[] array, int start, int end, int[] buffer) {
-        LinkedList<Pair> queue= new LinkedList<>();
-        queue.push(new Pair(start, end));
-        while(!queue.isEmpty()){
-            sortWithQueue(array, queue);
+        Deque<Pair> stack= new LinkedList<>();
+        stack.push(new Pair(start, end));
+
+        while(!stack.isEmpty()  ){
+            sortWithStack(array, stack, buffer);
         }
     }
 
-    public void sortWithQueue(int[] array, Queue<Pair> queue) {
-        Pair peek = queue.remove();
+    public void sortWithStack(int[] array, Deque<Pair> stack, int[] buffer) {
+        Pair peek = stack.pop();
 
-        if (peek.end-peek.start<=0) {
+        if (peek.children!=null){
+            merge(array, peek.children.get(0).start,  peek.children.get(1).start,  peek.children.get(1).end, buffer);
+        } else if (peek.end-peek.start<=0) {
         } else if (peek.end-peek.start==1) { //two element to sort,
             if (array[peek.start]> array[peek.end]) {
                 ArrayUtil.swap(array, peek.start, peek.end);
             }
-        }else{
+        } else {
             //find the middle.
             int middle = peek.start + (int) Math.ceil((peek.end-peek.start) / (double) 2);
             Pair pair1 = new Pair(middle, peek.end);
             Pair pair = new Pair(peek.start, middle - 1);
 
-            queue.add(pair1);
-            queue.add(pair);
-
-            //how to do the merge here?
+            peek.children= Arrays.asList(pair, pair1);
+            stack.push(peek);
+            stack.push(pair1);
+            stack.push(pair);
         }
     }
 

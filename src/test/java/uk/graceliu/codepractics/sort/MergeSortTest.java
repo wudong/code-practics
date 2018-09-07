@@ -23,6 +23,14 @@ class MergeSortTest {
         assertArrayEquals(array, new int[]{1,2,3,5});
     }
 
+    @org.junit.jupiter.api.Test
+    public void testMergeSortSimple2() {
+        int[] array = {1,5,3,2 ,4};
+
+        new MergeSort().sort(array);
+        assertArrayEquals(array, new int[]{1,2,3,4,5});
+    }
+
 
     @org.junit.jupiter.api.Test
     void testMergeSort() {

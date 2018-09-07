@@ -1,6 +1,9 @@
 package uk.graceliu.codepractics.sort;
 
+import java.util.List;
+
 public class Pair {
+    public List<Pair> children;
     int start;
     int end;
 
