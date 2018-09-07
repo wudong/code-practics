@@ -43,7 +43,7 @@ public class MergeSort implements Sort {
 
         if (peek.children!=null){
             merge(array, peek.children.get(0).start,  peek.children.get(1).start,  peek.children.get(1).end, buffer);
-        } else if (peek.end-peek.start<=0) {
+        } else if (peek.end-peek.start<=0) { //zero element.
         } else if (peek.end-peek.start==1) { //two element to sort,
             if (array[peek.start]> array[peek.end]) {
                 ArrayUtil.swap(array, peek.start, peek.end);
@@ -61,6 +61,10 @@ public class MergeSort implements Sort {
         }
     }
 
+    //from bottom up approach to merge. merge 2/4/8/16 in group size.
+    public void bottomUpMergeSort(int[] array, int start, int end, int[] buffer) {
+        //TODO
+    }
 
     /**
      * Merge the partially sorted two array into one single array
